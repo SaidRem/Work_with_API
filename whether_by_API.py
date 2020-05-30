@@ -31,11 +31,11 @@ class CityInfo:
 
 
 def main(city):
-    city_info = CityInfo("Moscow")
+    city_info = CityInfo(city)
     forecast = city_info.weather_forecast()
     pprint.pprint(forecast)
 
 
 if __name__ == "__main__":
-    city = input('Enter the city').strip()
+    city = input('Enter city').strip()
     main(city)
