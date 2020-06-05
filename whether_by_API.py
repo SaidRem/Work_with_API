@@ -23,11 +23,12 @@ class YandexWeather:
 
 
 class CityInfo:
-    def __init__(self, city):
-        self.city = city
+    def __init__(self, city, forecast_provider=None):
+        self.city = city.lower()
+        self._forecast_provider = forecast_provider or YandexWeather()
 
     def weather_forecast(self):
-        pass
+        return self._forecast_provider.get(self.city)
 
 
 def main(city):
@@ -37,5 +38,5 @@ def main(city):
 
 
 if __name__ == "__main__":
-    city = input('Enter city').strip()
+    city = input('Enter the city').strip()
     main(city)
