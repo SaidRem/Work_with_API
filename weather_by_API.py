@@ -4,7 +4,7 @@ import requests
 from dateutil.parser import parse
 
 
-API_KEY_YAN_WEATHER = ''
+API_KEY_YAN_WEATHER = ''    # type in the key recieved from yandex
 API_KEY_YAN_GEO = ''
 
 
