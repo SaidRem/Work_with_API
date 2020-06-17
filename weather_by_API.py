@@ -22,6 +22,16 @@ class YandexWeather:
         return forecast
 
 
+class Geoloc:
+
+    def get_point(city):
+        url = f"https://geocode-maps.yandex.ru/1.x/?apikey={API_KEY_YAN_GEO}" \
+            f"&format=json&geocode={city}"
+        data = requests.get(url).json()["response"]["GeoObjectCollection"][
+            "featureMember"][0]["GeoObject"]["Point"]["pos"]
+        return data.split()
+
+
 class CityInfo:
     def __init__(self, city, forecast_provider=None):
         self.city = city.lower()
