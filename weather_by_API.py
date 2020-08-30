@@ -4,8 +4,8 @@ import requests
 from dateutil.parser import parse
 
 
-API_KEY_YAN_WEATHER = ''    # type in the key recieved from yandex
-API_KEY_YAN_GEO = ''
+API_KEY_YAN_WEATHER = ''    # type in the key, recieved from yandex
+API_KEY_YAN_GEO = ''        # type in the key, recieved from yandex
 
 
 class YandexWeather:
@@ -35,7 +35,7 @@ class Geoloc:
 class CityInfo:
     def __init__(self, city, forecast_provider=None):
         self.city = city.lower()
-        self._forecast_provider = forecast_provider or YandexWeather()
+        self._forecast_provider = forecast_provider or YandexWeather()    # Default use yandex api
 
     def weather_forecast(self):
         return self._forecast_provider.get(self.city)
