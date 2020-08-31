@@ -11,6 +11,7 @@ API_KEY_YAN_GEO = ''        # type in the key, recieved from yandex
 class YandexWeather:
 
     def get(self, city):
+        """Get weather forecast through yandex api"""
         url = f"https://api.weather.yandex.ru/v1/forecast?lat={geo[0]}&lon" \
             f"={geo[1]}&extra=true"
         headers = {'X-Yandex-API-Key': API_KEY_YAN_WEATHER}
