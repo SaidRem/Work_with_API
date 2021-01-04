@@ -1,2 +1,2 @@
 # weather_API
-Get weathe through API
+Working with API yandex and others
