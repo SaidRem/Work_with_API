@@ -40,10 +40,7 @@ def calc_age(uid):
     list_of_ages = [today_year - year for year in list_of_years]
     d_of_ages = Counter(list_of_ages)
     tuples_ages = list(d_of_ages.items())
-    # tuples_ages.sort(key=lambda x: x[1], reverse=True)
-    sorted_ages = sorted(tuples_ages, key=lambda x: (x[1], x[0]), reverse=True)
-    sorted_ages.sort(key=lambda x: x[0])
-    sorted_ages.sort(key=lambda x: x[1], reverse=True)
+    sorted_ages = sorted(tuples_ages, key=lambda x: (x[1], -x[0]), reverse=True)
 
     return sorted_ages
 
