@@ -10,5 +10,10 @@ all_people = requests.get(url_people).json()
 
 # Let's get info about Luke Skywalker
 
-Luke_Skywalker = requests.get(url_people + '1/').json()
+luke_sky = requests.get(url_people + '1/').json()
+
+# Let's get info about some planets in Star Wars Universe
+
+planets = requests.get(url_planets).json()
+
 
