@@ -1,11 +1,15 @@
 import requests
 
-# URL
+# URLs
 URL_PEOPLE = 'https://www.swapi.tech/api/people/'
 URL_PLANETS = 'https://swapi.dev/api/planets/'
 
-# Let's get info about first four character
+
 def get_people(name=None):
+    '''
+    Returns dict object with characters of the Star Wars
+    if not specified name of a character.
+       '''
     if name:
         people = requests.get(URL_PEOPLE + name).json()
     else:
@@ -15,8 +19,14 @@ def get_people(name=None):
 
 
 # Let's get info about some planets in Star Wars Universe
-def planets():
-    planets = requests.get(URL_PLANETS).json()
+def planets(name=None):
+    ''' 
+    Returns dict object with planets of Star Wars Universe.
+    '''
+    if name:
+        planets = requests.get(URL_PLANETS + name).json()
+    else:
+        planets = requests.get(URL_PLANETS).json()
     return planets
 
 
