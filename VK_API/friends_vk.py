@@ -6,22 +6,21 @@ from collections import Counter
 with open('vk_api_token.txt') as f:
     token_vk = f.readline().strip()
 
+URL = 'https://api.vk.com/method'
 ACCESS_TOKEN = token_vk         # Token from vk to access data through vk API
 
 # VK API: https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
 
 def r_id_user(uid):
-    url = 'https://api.vk.com/method/users.get'
     payload_user = dict(user_ids=uid, fields='bdate', 
                         access_token=ACCESS_TOKEN, v=5.71)
-    request_user = requests.get(url, params=payload_user).json()['response']
+    request_user = requests.get(f'{URL}/users.get', params=payload_user).json()['response']
     return request_user[0]['id']
 
 def friends_bdays(id_user):
-    url = 'https://api.vk.com/method/friends.get'
     payload_friends = dict(user_id=id_user, fields='bdate',
                            access_token=ACCESS_TOKEN, v=5.71)
-    result = requests.get(url, params=payload_friends).json()['response']['items']
+    result = requests.get(f'{URL}/friends.get', params=payload_friends).json()['response']['items']
     return result
     
 
