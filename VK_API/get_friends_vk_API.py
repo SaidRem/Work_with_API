@@ -2,7 +2,11 @@ import requests
 import time as tm
 import datetime as dt
 from collections import Counter
-ACCESS_TOKEN = ''         # Enter your token from vk to access data through vk API
+
+with open('vk_api_token.txt') as f:
+    token_vk = f.readline().strip()
+
+ACCESS_TOKEN = token_vk         # Token from vk to access data through vk API
 
 # VK API: https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
 
