@@ -1,6 +1,7 @@
 import requests
 import time as tm
 import datetime as dt
+from json.decoder import JSONDecodeError
 from collections import Counter
 
 with open('vk_api_token.txt') as f:
@@ -14,8 +15,13 @@ ACCESS_TOKEN = token_vk         # Token from vk to access data through vk API
 def r_id_user(uid):
     payload_user = dict(user_ids=uid, fields='bdate', 
                         access_token=ACCESS_TOKEN, v=5.71)
-    request_user = requests.get(f'{URL}/users.get', params=payload_user).json()['response']
-    return request_user[0]['id']
+    request_user = requests.get(f'{URL}/users.get', params=payload_user)
+    try:
+        request_user = request_user.json()['response']
+        user_id = request_user[0]['id']
+        return user_id
+    except (JSONDecodeError, IndexError, KeyError):
+        pass
 
 def friends_bdays(id_user):
     payload_friends = dict(user_id=id_user, fields='bdate',
@@ -25,7 +31,8 @@ def friends_bdays(id_user):
     
 
 def calc_age(uid):
-    today_year = dt.datetime.fromtimestamp(tm.time()).year
+    # today_year = dt.datetime.fromtimestamp(tm.time()).year
+    today_year = dt.datetime.now().year
     
     id_user = r_id_user(uid)
     list_friends = friends_bdays(id_user)
