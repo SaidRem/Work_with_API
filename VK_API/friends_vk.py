@@ -17,7 +17,8 @@ def r_id_user(uid):
                         access_token=ACCESS_TOKEN, v=5.71)
     request_user = requests.get(f'{URL}/users.get', params=payload_user)
     try:
-        request_user = request_user.json()['response']
+        request_user = request_user.json()
+        request_user = request_user['response']
         user_id = request_user[0]['id']
         return user_id
     except (JSONDecodeError, IndexError, KeyError):
@@ -26,12 +27,17 @@ def r_id_user(uid):
 def friends_bdays(id_user):
     payload_friends = dict(user_id=id_user, fields='bdate',
                            access_token=ACCESS_TOKEN, v=5.71)
-    result = requests.get(f'{URL}/friends.get', params=payload_friends).json()['response']['items']
-    return result
+    response = requests.get(f'{URL}/friends.get', params=payload_friends)
+    try:
+        response = response.json()
+        response = response['response']['items']
+        return response
+    except (JSONDecodeError, KeyError):
+        pass
+    
     
 
 def calc_age(uid):
-    # today_year = dt.datetime.fromtimestamp(tm.time()).year
     today_year = dt.datetime.now().year
     
     id_user = r_id_user(uid)
