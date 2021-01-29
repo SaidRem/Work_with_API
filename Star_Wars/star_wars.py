@@ -1,9 +1,9 @@
 import requests
-
+import os
 # URLs
 URL_PEOPLE = 'https://www.swapi.tech/api/people/'
 URL_PLANETS = 'https://swapi.dev/api/planets/'
-
+URL_STARSHIPS = 'https://swapi.dev/api/planets/'
 
 def get_people(name=None):
     '''
@@ -30,6 +30,14 @@ def planets(name=None):
     return planets
 
 
+def starships(name=None):
+    if name:
+        starships = requests.get(URL_STARSHIPS + name).json()
+    else:
+        starships = requests.get(URL_STARSHIPS).json()
+    return starships
+
 if __name__ == '__main__':
     print(get_people('1/')) # Info about Luke Skywalker.
     print(get_people())     # First page of characters list.
+    print(starships())
