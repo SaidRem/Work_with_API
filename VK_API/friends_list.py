@@ -9,6 +9,7 @@ URL = 'https://api.vk.com/method'
 ACCESS_TOKEN = token_vk         # Token from vk to access data through vk API
 
 def r_id_user(uid):
+    "Returns user id."
     payload_user = dict(user_ids=uid, fields='bdate', 
                         access_token=ACCESS_TOKEN, v=5.71)
     request_user = requests.get(f'{URL}/users.get', params=payload_user)
@@ -22,6 +23,7 @@ def r_id_user(uid):
 
 
 def friends(user):
+    "Returns list of dicts."
     id_user = r_id_user(user)
     payload_friends = dict(user_id=id_user, fields='bdate, occupation',
                            access_token=ACCESS_TOKEN, v=5.71)
@@ -29,7 +31,7 @@ def friends(user):
     try:
         response = response.json()
         response = response['response']['items']
-        return response[:10]
+        return response[:3]
     except (JSONDecodeError, KeyError):
         pass
 
