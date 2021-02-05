@@ -9,11 +9,9 @@ URL_API = r"http://api.openweathermap.org/data/2.5"
 
 
 def today_weather(city=None, msr="metric"):
-    """Returns current weather in a city"""
-    if city:
-        p = dict(q=city, units=msr, appid=API_KEY)
-    else:
-        p = dict(q="Astrakhan", units=msr, appid=API_KEY)
+    """Returns current weather in the city"""
+    city = city if city else "Moscow"
+    p = dict(q=city, units=msr, appid=API_KEY)
     r = requests.get(f"{URL_API}//weather", params=p)
     r = r.json()
     return r
@@ -21,8 +19,5 @@ def today_weather(city=None, msr="metric"):
 
 if __name__ == "__main__":
     city = input("Enter city name => ")
-    if city:
-        print(today_weather(city=city))
-    else:
-        print(today_weather())
+    print(today_weather(city=city if city else None))
 
