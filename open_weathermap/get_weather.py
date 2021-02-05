@@ -1,4 +1,5 @@
 import requests
+from pprint import pprint
 
 
 with open("api_key.txt") as f:
@@ -16,8 +17,20 @@ def today_weather(city=None, msr="metric"):
     r = r.json()
     return r
 
+def weather_5d_forecast(city=None, msr="metric"):
+    city = city if city else "Moscow"
+    p = dict(q=city, units=msr, appid=API_KEY)
+    r = requests.get(f"{URL_API}//forecast", params=p)
+    r = r.json()
+    return r
+
 
 if __name__ == "__main__":
-    city = input("Enter city name => ")
-    print(today_weather(city=city if city else None))
+    weather = input(f"Enter: t - 'today weather'\n{7*' '}f - 'five days weather': ")
+    if weather == 'f':
+        city = input("Enter city name => ")
+        pprint(weather_5d_forecast(city=city if city else None))
+    else:
+        city = input("Enter city name => ")
+        print(today_weather(city=city if city else None))
 
