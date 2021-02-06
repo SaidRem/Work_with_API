@@ -5,11 +5,13 @@ from dateutil.parser import parse
 
 
 API_KEY_YAN_WEATHER = open('api_key_yandex_weather').readline()    # type in the key, recieved from yandex
-API_KEY_YAN_GEO = ''        # type in the key, recieved from yandex
+API_KEY_YAN_GEO = open('api_key_yandex_geoloc').readline()         # type in the key, recieved from yandex
 URL_YanWeather = (f"https://api.weather.yandex.ru/v1/forecast?lat={geo[0]}&lon"
                   f"={geo[1]}&extra=true")
 URL_YanGeoLoc = (f"https://geocode-maps.yandex.ru/1.x/?apikey={API_KEY_YAN_GEO}"
                  f"&format=json&geocode={city}")
+
+
 class YandexWeather:
 
     def get(self, city):
