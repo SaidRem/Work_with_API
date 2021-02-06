@@ -1,4 +1,4 @@
 /__pycache__
 *.txt
-api_key
+api_key*
 test.py
