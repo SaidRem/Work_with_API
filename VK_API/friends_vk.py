@@ -8,7 +8,7 @@ with open('vk_api_token.txt') as f:
     token_vk = f.readline().strip()
 
 URL = 'https://api.vk.com/method'
-ACCESS_TOKEN = token_vk         # Token from vk to access data through vk API
+ACCESS_TOKEN = token_vk         # Token from vk.
 
 # VK API: https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
 
@@ -24,6 +24,7 @@ def r_id_user(uid):
     except (JSONDecodeError, IndexError, KeyError):
         pass
 
+
 def friends_bdays(id_user):
     payload_friends = dict(user_id=id_user, fields='bdate',
                            access_token=ACCESS_TOKEN, v=5.71)
@@ -35,23 +36,15 @@ def friends_bdays(id_user):
     except (JSONDecodeError, KeyError):
         pass
     
-    
 
 def calc_age(uid):
     today_year = dt.datetime.now().year
-    
     id_user = r_id_user(uid)
     list_friends = friends_bdays(id_user)
-#     print(list_friends[:5])
-
-
     list_of_bdate = []
     for friend in list_friends:
         if 'bdate' in friend and len(friend['bdate']) > 7:
             list_of_bdate.append(friend['bdate'])
-            
-#     print(list_of_bdate)
-    
     list_of_years = [int(d[-4:]) for d in list_of_bdate]
     list_of_ages = [today_year - year for year in list_of_years]
     d_of_ages = Counter(list_of_ages)
