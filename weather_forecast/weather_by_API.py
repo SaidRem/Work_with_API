@@ -33,7 +33,7 @@ class YandexWeather:
 
 class Geoloc:
 
-    def get_point(city):
+    def get_point(self):
         data = requests.get(URL_YanGeoLoc).json()["response"]["GeoObjectCollection"][
             "featureMember"][0]["GeoObject"]["Point"]["pos"]
         return data.split()
