@@ -3,9 +3,15 @@ import pprint
 import requests
 from dateutil.parser import parse
 
+with open('api_key_yandex_weather') as f:
+    api_key_yan_weather = f.readline()
 
-API_KEY_YAN_WEATHER = open('api_key_yandex_weather').readline()    # type in the key, recieved from yandex
-API_KEY_YAN_GEO = open('api_key_yandex_geoloc').readline()         # type in the key, recieved from yandex
+with open('api_key_yandex_geoloc') as f:
+    api_key_yan_geo = f.readline()
+
+API_KEY_YAN_WEATHER = api_key_yan_weather    # type in the key, recieved from yandex
+API_KEY_YAN_GEO = api_key_yan_geo            # type in the key, recieved from yandex
+
 URL_YanWeather = (f"https://api.weather.yandex.ru/v1/forecast?lat={geo[0]}&lon"
                   f"={geo[1]}&extra=true")
 URL_YanGeoLoc = (f"https://geocode-maps.yandex.ru/1.x/?apikey={API_KEY_YAN_GEO}"
