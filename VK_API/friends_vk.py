@@ -13,7 +13,8 @@ ACCESS_TOKEN = token_vk         # Token from vk.
 # VK API: https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
 
 def r_id_user(uid):
-    payload_user = dict(user_ids=uid, fields='bdate', 
+    "Returns user id by his nickname"
+    payload_user = dict(user_ids=uid,
                         access_token=ACCESS_TOKEN, v=5.71)
     request_user = requests.get(f'{URL}/users.get', params=payload_user)
     try:
@@ -26,12 +27,14 @@ def r_id_user(uid):
 
 
 def friends_bdays(id_user):
+    "Returns users list of dicts of friends names, birth days, etc"
     payload_friends = dict(user_id=id_user, fields='bdate',
                            access_token=ACCESS_TOKEN, v=5.71)
     response = requests.get(f'{URL}/friends.get', params=payload_friends)
     try:
         response = response.json()
         response = response['response']['items']
+        print(response)
         return response
     except (JSONDecodeError, KeyError):
         pass
