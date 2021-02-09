@@ -41,6 +41,12 @@ def friends_bdays(id_user):
     
 
 def calc_age(uid):
+    """
+    Returns friends ages distribution for the specified user
+    in list of tuples (<age>, <number of friends with the age>),
+    sorted in descending order by the second key and ascending
+    by the first key.
+    """
     today_year = dt.datetime.now().year
     id_user = r_id_user(uid)
     list_friends = friends_bdays(id_user)
