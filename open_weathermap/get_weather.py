@@ -24,6 +24,14 @@ def weather_5d_forecast(city=None, msr="metric"):
     r = r.json()
     return r
 
+def forecast_reader():
+    weather = weather_5d_forecast()
+    for w in weather['list']:
+        pprint(w)
+        more = input('More? (y-yes, n-no)=> ')
+        if more != 'y':
+            return
+
 
 if __name__ == "__main__":
     weather = input(f"Enter: t - 'today weather'\n{7*' '}f - 'five days weather': ")
