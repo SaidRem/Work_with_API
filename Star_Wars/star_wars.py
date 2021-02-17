@@ -1,5 +1,6 @@
 import requests
 import os
+from pprint import pprint
 from json.decoder import JSONDecodeError
 
 # URLs
@@ -7,6 +8,7 @@ URL_ROOT = 'https://swapi.dev/api/'
 URL_PEOPLE = 'https://www.swapi.tech/api/people/'
 URL_PLANETS = 'https://swapi.dev/api/planets/'
 URL_STARSHIPS = 'https://swapi.dev/api/planets/'
+URL_FILMS = 'https://swapi.dev/api/films/'
 
 def root():
     '''
@@ -53,10 +55,18 @@ def starships(name=None):
         starships = requests.get(URL_STARSHIPS).json()
     return starships
 
+
+def films(name=None):
+    if name:
+        film = requests.get(URL_FILMS + name).json()
+    else:
+        film = requests.get(URL_FILMS).json()
+    return film
+
 if __name__ == '__main__':
     # print(get_people('1/')) # Info about Luke Skywalker.
     # print(get_people())        # First page of characters list.
-    print(root())
+    pprint(films())
     # nex = get_people()['next']
     # print(get_people(url=nex))
     # print(starships())
