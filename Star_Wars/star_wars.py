@@ -9,6 +9,7 @@ URL_PEOPLE = 'https://www.swapi.tech/api/people/'
 URL_PLANETS = 'https://swapi.dev/api/planets/'
 URL_STARSHIPS = 'https://swapi.dev/api/planets/'
 URL_FILMS = 'https://swapi.dev/api/films/'
+URL_VEHICLES = 'https://swapi.dev/api/vehicles/'
 
 def root():
     '''
@@ -49,11 +50,27 @@ def planets(name=None):
 
 
 def starships(name=None):
+    """
+    Returns data for a transport craft that has
+    hyperdrive capability.
+    """
     if name:
         starships = requests.get(URL_STARSHIPS + name).json()
     else:
         starships = requests.get(URL_STARSHIPS).json()
     return starships
+
+
+def vehicles(name=None):
+    """
+    A Vehicle resource is a single transport craft that
+    does not have hyperdrive capability.
+    """
+    if name:
+        vehicle = requests.get(URL_VEHICLES + name).json()
+    else:
+        vehicle = requests.get(URL_VEHICLES).json()
+    return vehicle
 
 
 def films(name=None):
@@ -66,7 +83,7 @@ def films(name=None):
 if __name__ == '__main__':
     # print(get_people('1/')) # Info about Luke Skywalker.
     # print(get_people())        # First page of characters list.
-    pprint(films())
+    pprint(vehicles())
     # nex = get_people()['next']
     # print(get_people(url=nex))
     # print(starships())
