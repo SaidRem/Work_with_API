@@ -31,10 +31,14 @@ def friends(user):
     try:
         response = response.json()
         response = response['response']['items']
-        return response[:3]
+        
     except (JSONDecodeError, KeyError):
         pass
+    return response[:3]
 
+
+# TODO
+# friends data to sqlite3
 
 if __name__ == '__main__':
     user = input('Enter user id or nickname:\n=> ')
