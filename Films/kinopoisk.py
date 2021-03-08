@@ -7,7 +7,11 @@ with open('api_token.txt') as f:
 URL_API_KINO = 'https://api.kinopoisk.cloud'
 
 def movie(id):
-    res = requests.get(URL_API_KINO + f'/movies/{id}' + f'/token/{API_TOKEN}')
+    res = requests.get(f'{URL_API_KINO}/movies/{id}/token/{API_TOKEN}')
+    return res.json()
+
+def tv_series(id):
+    res = requests.get(f'{URL_API_KINO}/tv-series/{id}/token/{API_TOKEN}')
     return res.json()
 
 
