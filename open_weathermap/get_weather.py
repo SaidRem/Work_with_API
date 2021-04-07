@@ -17,6 +17,17 @@ def today_weather(city=None, msr="metric"):
     r = r.json()
     return r
 
+def print_today_temp():
+    city = input("Enter city name => ")
+    r = today_weather(city)
+    temp_keys = r['main'].keys()
+    for k in temp_keys:
+        print('| {:^12} |'.format(k), end='')
+    print('\n' + '-' * 100)
+    for k in temp_keys:
+        print('| {:^12} |'.format(r['main'][k]), end='')
+    return None
+
 def weather_5d_forecast(city=None, msr="metric"):
     city = city if city else "Moscow"
     p = dict(q=city, units=msr, appid=API_KEY)
@@ -30,7 +41,7 @@ def forecast_reader():
         pprint(w)
         more = input('More? (y-yes, n-no)=> ')
         if more != 'y':
-            return
+            return None
 
 
 if __name__ == "__main__":
@@ -40,5 +51,5 @@ if __name__ == "__main__":
         pprint(weather_5d_forecast(city=city if city else None))
     else:
         city = input("Enter city name => ")
-        print(today_weather(city=city if city else None))
+        pprint(today_weather(city=city if city else None))
 
