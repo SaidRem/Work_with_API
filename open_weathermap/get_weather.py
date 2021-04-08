@@ -14,6 +14,8 @@ def today_weather(city=None, msr="metric"):
     city = city if city else "Moscow"
     p = dict(q=city, units=msr, appid=API_KEY)
     r = requests.get(f"{URL_API}//weather", params=p)
+    if r.status_code != 200:
+        return f"Not Found the city: {city}"
     r = r.json()
     return r
 
@@ -32,6 +34,8 @@ def weather_5d_forecast(city=None, msr="metric"):
     city = city if city else "Moscow"
     p = dict(q=city, units=msr, appid=API_KEY)
     r = requests.get(f"{URL_API}//forecast", params=p)
+    if r.status_code != 200:
+        return f"Not Found the city: {city}"
     r = r.json()
     return r
 
