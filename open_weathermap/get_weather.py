@@ -19,8 +19,7 @@ def today_weather(city=None, msr="metric"):
     r = r.json()
     return r
 
-def print_today_temp():
-    city = input("Enter city name => ")
+def print_today_temp(city):
     r = today_weather(city)
     temp_keys = r['main'].keys()
     for k in temp_keys:
@@ -52,7 +51,7 @@ if __name__ == "__main__":
     weather = input(f"Enter: t - 'today weather'\n{7*' '}f - 'five days weather': ")
     if weather == 'f':
         city = input("Enter city name => ")
-        pprint(weather_5d_forecast(city=city if city else None))
+        pprint(weather_5d_forecast(city=city if city else None)['list'][0])
     else:
         city = input("Enter city name => ")
         pprint(today_weather(city=city if city else None))
