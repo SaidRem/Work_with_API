@@ -51,7 +51,7 @@ if __name__ == "__main__":
     weather = input(f"Enter: t - 'today weather'\n{7*' '}f - 'five days weather': ")
     if weather == 'f':
         city = input("Enter city name => ")
-        pprint(weather_5d_forecast(city=city if city else None)['list'][0])
+        pprint(weather_5d_forecast(city=city if city else None))
     else:
         city = input("Enter city name => ")
         pprint(today_weather(city=city if city else None))
