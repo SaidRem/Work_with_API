@@ -18,6 +18,10 @@ class OpenW:
             print(f"Not Found the city: {city}")
         self.five_dforecast = res.json()
     
+    @property
+    def mean_temp(self):
+        pass
+    
     def __str__(self):
         pprint(self.five_dforecast['city'])
 
