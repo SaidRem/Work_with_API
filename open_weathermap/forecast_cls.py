@@ -20,13 +20,19 @@ class OpenW:
     
     @property
     def mean_temp(self):
-        pass
+        temp = []
+        for obj in self.five_dforecast['list']:
+            temp.append(obj['main']['temp'])
+        res = '{:.2f}'.format(sum(temp)/len(temp))
+        return (f"Mean temperature from {self.five_dforecast['list'][0]['dt_txt']} to "
+                f"{self.five_dforecast['list'][-1]['dt_txt']} is {res}")
     
     def __str__(self):
-        pprint(self.five_dforecast['city'])
+        pprint(self.five_dforecast['list'])
 
 
 if __name__ == '__main__':
     city = input('Enter city\n=> ')
     ob = OpenW(city)
-    print(ob)
+    # print(ob)
+    print(ob.mean_temp)
