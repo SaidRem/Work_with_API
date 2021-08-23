@@ -4,7 +4,7 @@ import ssl
 
 # https://apps.twitter.com/
 
-SCREEN_NAME = ''
+SCREEN_NAME = ''  # Your screen name on twitter account.
 COUNT = '2'
 
 print('* Calling Twitter...')
