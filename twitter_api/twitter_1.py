@@ -2,6 +2,7 @@ import urllib.request, urllib.parse, urllib.error
 import twurl
 import ssl
 
+# Create App:
 # https://apps.twitter.com/
 
 TWITTER_URL = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
@@ -23,5 +24,5 @@ while True:
     data = connection.read().decode()
     print(data[:250])
     headers = dict(connection.getheaders())
-    # print remaining request quota
+    # print remaining requests quota
     print(f'Remaining {headers["x-rate-limit-remaining"]}')
